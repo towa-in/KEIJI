@@ -27,7 +27,7 @@
         <div style="background-color:white">
         <h1>KEIJI-BAN</h1>
         </div>
-        <a href="https://tech-base.net/tb-240273/Mission_5-1.php" class="button">日本語</a>
+        <a href="main-v1.php" class="button">日本語</a>
         <a href="https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=ja" class="button">English</a>
         <h2 style="color:red;">テストページ</h2>
         
