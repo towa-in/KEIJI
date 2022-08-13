@@ -138,6 +138,7 @@
               $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
               $stmt->execute();                          
               $results = $stmt->fetchAll();
+              
               foreach ($results as $row){
                   if ($row['pword'] == $delpass){  // 入力されたパスワードの確認
                       $id = $delete;
@@ -177,6 +178,7 @@
           $sql = 'SELECT * FROM mission511';
           $stmt = $pdo->query($sql);
           $results = $stmt->fetchAll();
+              
           foreach ($results as $row){
               echo "<h3>".$row['id'].' ';
               echo "名前：<font color='green'>".$row['name']." </font>";
