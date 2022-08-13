@@ -41,7 +41,7 @@
           $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
           
           // テーブル作成
-          $sql = "CREATE TABLE IF NOT EXISTS mission511"
+          $sql = "CREATE TABLE IF NOT EXISTS m511"
           ." ("
           . "id INT AUTO_INCREMENT PRIMARY KEY,"
           . "name char(32),"
@@ -73,7 +73,7 @@
               if ($editnum == null){  // 編集行数が設定されていない新規投稿の場合
                   if ($na == null){  // 名前が設定されていない場合、名無しに設定
                       if ($postpass != null){
-                          $sql = $pdo -> prepare("INSERT INTO mission511 (name, comment, date, pword) VALUES (:name, :comment, :date, :pword)");
+                          $sql = $pdo -> prepare("INSERT INTO m511 (name, comment, date, pword) VALUES (:name, :comment, :date, :pword)");
                           $sql -> bindParam(':name', $name, PDO::PARAM_STR);
                           $sql -> bindParam(':comment', $comment, PDO::PARAM_STR);
                           $sql -> bindParam(':date', $date, PDO::PARAM_STR);
@@ -90,7 +90,7 @@
                     
                   } else {  // 名前が入力されていればそのままデータベースに
                        if ($postpass != null){
-                          $sql = $pdo -> prepare("INSERT INTO mission511 (name, comment, date, pword) VALUES (:name, :comment, :date, :pword)");
+                          $sql = $pdo -> prepare("INSERT INTO m511 (name, comment, date, pword) VALUES (:name, :comment, :date, :pword)");
                           $sql -> bindParam(':name', $name, PDO::PARAM_STR);
                           $sql -> bindParam(':comment', $comment, PDO::PARAM_STR);
                           $sql -> bindParam(':date', $date, PDO::PARAM_STR);
@@ -114,7 +114,7 @@
                      $comment = $com; 
                      $pword = $postpass;
                      $date = $dt;
-                     $sql = 'UPDATE mission511 SET name=:name,comment=:comment,date=:date,pword=:pword WHERE id=:id';
+                     $sql = 'UPDATE m511 SET name=:name,comment=:comment,date=:date,pword=:pword WHERE id=:id';
                      $stmt = $pdo->prepare($sql);
                      $stmt->bindParam(':name', $name, PDO::PARAM_STR);
                      $stmt->bindParam(':comment', $comment, PDO::PARAM_STR);
@@ -133,7 +133,7 @@
           // 削除フォーム処理
           if (is_numeric($delete)){
               $id = $delete;  // 削除する投稿番号
-              $sql = 'SELECT * FROM mission511 WHERE id=:id ';
+              $sql = 'SELECT * FROM m511 WHERE id=:id ';
               $stmt = $pdo->prepare($sql);                  
               $stmt->bindParam(':id', $id, PDO::PARAM_INT); 
               $stmt->execute();                          
@@ -142,7 +142,7 @@
               foreach ($results as $row){
                   if ($row['pword'] == $delpass){  // 入力されたパスワードの確認
                       $id = $delete;
-                      $sql = 'delete from mission511 where id=:id';
+                      $sql = 'delete from m511 where id=:id';
                       $stmt = $pdo->prepare($sql);
                       $stmt->bindParam(':id', $id, PDO::PARAM_INT);
                       $stmt->execute();
@@ -156,7 +156,7 @@
           // 編集フォーム処理
           if (is_numeric($edit)){
               $id = $edit;  // 編集する投稿番号
-              $sql = 'SELECT * FROM mission511 WHERE id=:id ';
+              $sql = 'SELECT * FROM m511 WHERE id=:id ';
               $stmt = $pdo->prepare($sql);                 
               $stmt->bindParam(':id', $id, PDO::PARAM_INT);
               $stmt->execute();                       
@@ -175,7 +175,7 @@
           
           
           // コメント表示
-          $sql = 'SELECT * FROM mission511';
+          $sql = 'SELECT * FROM m511';
           $stmt = $pdo->query($sql);
           $results = $stmt->fetchAll();
               
